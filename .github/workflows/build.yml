@@ -34,7 +34,8 @@ jobs:
       - name: Verify bundle and architectures
         run: |
           codesign --verify --deep --strict dist/Ripple.app
-          lipo -verify_arch arm64 x86_64 dist/Ripple.app/Contents/MacOS/Ripple
+          lipo dist/Ripple.app/Contents/MacOS/Ripple -verify_arch arm64
+          lipo dist/Ripple.app/Contents/MacOS/Ripple -verify_arch x86_64
           plutil -lint dist/Ripple.app/Contents/Info.plist
           test -s dist/Ripple.app/Contents/Resources/LICENSE
       - name: Save release files
